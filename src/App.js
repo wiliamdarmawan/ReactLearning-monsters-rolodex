@@ -1,28 +1,35 @@
-import { Component } from 'react';
+import { Component } from "react";
 
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
-      name : 'Wiliam'
-    }
+      name: { firstName: 'Wiliam', lastName: 'Darmawan'},
+      company: "Unit4"
+    };
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Hi {this.state.name}</p>
-            <button onClick={ () => {
-              this.setState({name: 'Test'})
-            }}>
-              Change Name
-            </button>
+          <p>
+            Hi {this.state.name.firstName} {this.state.name.lastName}, I work 
+            at {this.state.company} 
+          </p>
+          <button
+            onClick={() => {
+              this.setState({ name: { firstName: "Testing", lastName: "Test" } });
+              console.log(this.state);
+            }}
+          >
+            Change Name
+          </button>
         </header>
       </div>
     );
