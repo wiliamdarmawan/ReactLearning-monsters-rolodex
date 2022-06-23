@@ -10,12 +10,15 @@ class App extends Component {
     this.state = {
       monsters: [],
     };
+
+    console.log('1');
   }
 
   componentDidMount() {
     // Run when the component gets Mounted
-    // Mount -> first time React renders item to the page
+    // Mount -> first time React renders, it is considered as "Mounted"
     // Component will only be re-mounted if it's been un-mounted
+    console.log('3');
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
@@ -31,6 +34,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('2');
     return (
       <div className="App">
         {this.state.monsters.map((monster) => {
