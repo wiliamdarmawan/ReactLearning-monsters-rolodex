@@ -8,25 +8,26 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: "Linda",
-          id: "123123123",
-        },
-        {
-          name: "Frank",
-          id: "123123123123",
-        },
-        {
-          name: "Jacky",
-          id: "123123123123123",
-        },
-        {
-          name: "Andrei",
-          id: "123123123123eqwe",
-        },
-      ],
+      monsters: [],
     };
+  }
+
+  componentDidMount() {
+    // Run when the component gets Mounted
+    // Mount -> first time React renders item to the page
+    // Component will only be re-mounted if it's been un-mounted
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) =>
+        this.setState(
+          () => {
+            return { monsters: users };
+          },
+          () => {
+            console.log(this.state);
+          }
+        )
+      );
   }
 
   render() {
