@@ -9,16 +9,17 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      searchField: "",
     };
 
-    console.log('1');
+    console.log("constructor");
   }
 
   componentDidMount() {
     // Run when the component gets Mounted
     // Mount -> first time React renders, it is considered as "Mounted"
     // Component will only be re-mounted if it's been un-mounted
-    console.log('3');
+    console.log("componentDidMount");
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
@@ -34,10 +35,27 @@ class App extends Component {
   }
 
   render() {
-    console.log('2');
+    console.log("render");
+
+    const filteredMonsters = this.state.monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(this.state.searchField)
+    );
+
     return (
       <div className="App">
-        {this.state.monsters.map((monster) => {
+        <input
+          className="search-box"
+          type="search"
+          placeholder="search monsters"
+          onChange={(event) => {
+            const searchField = event.target.value.toLowerCase();
+
+            this.setState(() => {
+              return { searchField };
+            });
+          }}
+        />
+        {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
