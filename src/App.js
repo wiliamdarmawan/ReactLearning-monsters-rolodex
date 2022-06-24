@@ -5,13 +5,13 @@ import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
 const App = () => {
-
-  const [searchField, setSearchField] = useState('', ) // [value, setValue]
+  console.log("render");
+  const [searchField, setSearchField] = useState(''); // [value, setValue]
   console.log(searchField);
 
   const onSearchChanged = (event) => {
     const searchFieldString = event.target.value.toLowerCase();
-    setSearchField(searchFieldString)
+    setSearchField(searchFieldString);
   };
 
   return (
